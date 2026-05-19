@@ -1,0 +1,252 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Mouse",
+    "sku": "EL-001",
+    "category": "Electronics",
+    "quantity": 45,
+    "price": 29.99,
+    "threshold": 10,
+    "createdAt": "2026-05-01"
+  },
+  {
+    "id": 2,
+    "name": "Mechanical Keyboard",
+    "sku": "EL-002",
+    "category": "Electronics",
+    "quantity": 8,
+    "price": 89.99,
+    "threshold": 10,
+    "createdAt": "2026-05-02"
+  },
+  {
+    "id": 3,
+    "name": "Monitor Stand",
+    "sku": "FN-001",
+    "category": "Furniture",
+    "quantity": 20,
+    "price": 49.99,
+    "threshold": 5,
+    "createdAt": "2026-05-03"
+  },
+  {
+    "id": 4,
+    "name": "Ballpoint Pens (Box)",
+    "sku": "OS-001",
+    "category": "Office Supplies",
+    "quantity": 3,
+    "price": 8.99,
+    "threshold": 10,
+    "createdAt": "2026-05-04"
+  },
+  {
+    "id": 5,
+    "name": "USB-C Hub",
+    "sku": "EL-003",
+    "category": "Electronics",
+    "quantity": 15,
+    "price": 39.99,
+    "threshold": 10,
+    "createdAt": "2026-05-05"
+  },
+  {
+    "id": 6,
+    "name": "Office Chair",
+    "sku": "FN-002",
+    "category": "Furniture",
+    "quantity": 0,
+    "price": 249.99,
+    "threshold": 3,
+    "createdAt": "2026-05-06"
+  },
+  {
+    "id": 7,
+    "name": "Sticky Notes (Pack)",
+    "sku": "OS-002",
+    "category": "Office Supplies",
+    "quantity": 60,
+    "price": 4.99,
+    "threshold": 15,
+    "createdAt": "2026-05-07"
+  },
+  {
+    "id": 8,
+    "name": "Cordless Drill",
+    "sku": "TL-001",
+    "category": "Tools",
+    "quantity": 7,
+    "price": 119.99,
+    "threshold": 8,
+    "createdAt": "2026-05-08"
+  },
+  {
+    "id": 9,
+    "name": "27\" 4K Monitor",
+    "sku": "EL-004",
+    "category": "Electronics",
+    "quantity": 12,
+    "price": 399.99,
+    "threshold": 5,
+    "createdAt": "2026-05-09"
+  },
+  {
+    "id": 10,
+    "name": "Laptop Docking Station",
+    "sku": "EL-005",
+    "category": "Electronics",
+    "quantity": 6,
+    "price": 179.99,
+    "threshold": 8,
+    "createdAt": "2026-05-09"
+  },
+  {
+    "id": 11,
+    "name": "Webcam 1080p",
+    "sku": "EL-006",
+    "category": "Electronics",
+    "quantity": 22,
+    "price": 64.99,
+    "threshold": 10,
+    "createdAt": "2026-05-09"
+  },
+  {
+    "id": 12,
+    "name": "Noise Cancelling Headset",
+    "sku": "EL-007",
+    "category": "Electronics",
+    "quantity": 4,
+    "price": 149.99,
+    "threshold": 8,
+    "createdAt": "2026-05-10"
+  },
+  {
+    "id": 13,
+    "name": "Standing Desk",
+    "sku": "FN-003",
+    "category": "Furniture",
+    "quantity": 5,
+    "price": 549.99,
+    "threshold": 3,
+    "createdAt": "2026-05-10"
+  },
+  {
+    "id": 14,
+    "name": "Ergonomic Desk Mat",
+    "sku": "FN-004",
+    "category": "Furniture",
+    "quantity": 30,
+    "price": 24.99,
+    "threshold": 10,
+    "createdAt": "2026-05-10"
+  },
+  {
+    "id": 15,
+    "name": "Whiteboard 48\"x36\"",
+    "sku": "OS-003",
+    "category": "Office Supplies",
+    "quantity": 8,
+    "price": 89.99,
+    "threshold": 3,
+    "createdAt": "2026-05-11"
+  },
+  {
+    "id": 16,
+    "name": "Printer Paper (Case)",
+    "sku": "OS-004",
+    "category": "Office Supplies",
+    "quantity": 2,
+    "price": 44.99,
+    "threshold": 5,
+    "createdAt": "2026-05-11"
+  },
+  {
+    "id": 17,
+    "name": "Label Maker",
+    "sku": "OS-005",
+    "category": "Office Supplies",
+    "quantity": 11,
+    "price": 34.99,
+    "threshold": 5,
+    "createdAt": "2026-05-11"
+  },
+  {
+    "id": 18,
+    "name": "Pallet Jack",
+    "sku": "TL-002",
+    "category": "Tools",
+    "quantity": 3,
+    "price": 329.99,
+    "threshold": 2,
+    "createdAt": "2026-05-12"
+  },
+  {
+    "id": 19,
+    "name": "Heavy Duty Shelving Unit",
+    "sku": "TL-003",
+    "category": "Tools",
+    "quantity": 9,
+    "price": 189.99,
+    "threshold": 4,
+    "createdAt": "2026-05-12"
+  },
+  {
+    "id": 20,
+    "name": "Barcode Scanner",
+    "sku": "EL-008",
+    "category": "Electronics",
+    "quantity": 7,
+    "price": 74.99,
+    "threshold": 5,
+    "createdAt": "2026-05-12"
+  },
+  {
+    "id": 21,
+    "name": "Thermal Label Printer",
+    "sku": "EL-009",
+    "category": "Electronics",
+    "quantity": 0,
+    "price": 129.99,
+    "threshold": 3,
+    "createdAt": "2026-05-13"
+  },
+  {
+    "id": 22,
+    "name": "Safety Gloves (Box of 100)",
+    "sku": "TL-004",
+    "category": "Tools",
+    "quantity": 14,
+    "price": 19.99,
+    "threshold": 10,
+    "createdAt": "2026-05-13"
+  },
+  {
+    "id": 23,
+    "name": "Network Switch 24-Port",
+    "sku": "EL-010",
+    "category": "Electronics",
+    "quantity": 5,
+    "price": 219.99,
+    "threshold": 3,
+    "createdAt": "2026-05-13"
+  },
+  {
+    "id": 24,
+    "name": "Cat6 Ethernet Cable (50ft)",
+    "sku": "EL-011",
+    "category": "Electronics",
+    "quantity": 38,
+    "price": 14.99,
+    "threshold": 15,
+    "createdAt": "2026-05-14"
+  },
+  {
+    "id": 25,
+    "name": "Cable Management Tray",
+    "sku": "OS-006",
+    "category": "Office Supplies",
+    "quantity": 18,
+    "price": 22.99,
+    "threshold": 8,
+    "createdAt": "2026-05-14"
+  }
+]

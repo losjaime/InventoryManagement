@@ -1,0 +1,342 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #f1f5f9;
+  color: #1e293b;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  background-color: #1e3a5f;
+  color: white;
+  padding: 1.25rem 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+header p {
+  font-size: 0.85rem;
+  color: #93c5fd;
+  margin-top: 0.2rem;
+}
+
+/* Main */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border-left: 4px solid #2563eb;
+}
+
+.card-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.card-amount {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e3a5f;
+  margin-top: 0.25rem;
+}
+
+.card-amount.low {
+  color: #dc2626;
+}
+
+/* Form */
+.form {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.form h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e3a5f;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.form-group input,
+.form-group select {
+  border: 1px solid #cbd5e1;
+  border-radius: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  color: #1e293b;
+  outline: none;
+  background: #f8fafc;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #2563eb;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #f1f5f9;
+}
+
+/* Add Item button in header */
+#toggle-form-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.55rem 1.25rem;
+  border-radius: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#toggle-form-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.toolbar input {
+  flex: 1;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  color: #1e293b;
+  outline: none;
+  background: white;
+}
+
+.toolbar input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.toolbar select {
+  border: 1px solid #cbd5e1;
+  border-radius: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  color: #1e293b;
+  outline: none;
+  background: white;
+  cursor: pointer;
+}
+
+/* Table */
+.table-wrapper {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+thead {
+  background-color: #1e3a5f;
+  color: white;
+}
+
+thead th {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.15s;
+}
+
+tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+tbody tr.low-stock {
+  background-color: #fff5f5;
+}
+
+tbody tr.low-stock:hover {
+  background-color: #fee2e2;
+}
+
+tbody td {
+  padding: 0.85rem 1rem;
+  color: #334155;
+}
+
+.empty-msg {
+  text-align: center;
+  color: #94a3b8;
+  padding: 3rem 0;
+}
+
+/* Status badge */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge.in-stock {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.badge.low-stock {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.badge.out-of-stock {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+/* Action buttons */
+.action-btns {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-edit {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  padding: 0.3rem 0.75rem;
+  border-radius: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-edit:hover {
+  background: #dbeafe;
+}
+
+.btn-delete {
+  background: #fff5f5;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  padding: 0.3rem 0.75rem;
+  border-radius: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background: #fee2e2;
+}
