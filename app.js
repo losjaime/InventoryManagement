@@ -1,7 +1,10 @@
 const API = "http://localhost:3000";
 let allItems = [];
 
-document.addEventListener("DOMContentLoaded", fetchItems);
+document.addEventListener("DOMContentLoaded", () => {
+  fetchItems();
+  fetchHistory();
+});
 
 // Toggle the add/edit form
 function toggleForm() {
@@ -45,14 +48,12 @@ async function submitForm(event) {
   };
 
   if (id) {
-    // Edit existing item
     await fetch(`${API}/items/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(item),
     });
   } else {
-    // Add new item
     await fetch(`${API}/items`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -64,6 +65,7 @@ async function submitForm(event) {
   document.getElementById("item-form").classList.add("hidden");
   document.getElementById("toggle-form-btn").textContent = "+ Add Item";
   fetchItems();
+  fetchHistory();
 }
 
 // Populate form with item data for editing
@@ -92,6 +94,7 @@ async function deleteItem(id) {
   if (!confirm("Are you sure you want to delete this item?")) return;
   await fetch(`${API}/items/${id}`, { method: "DELETE" });
   fetchItems();
+  fetchHistory();
 }
 
 // Filter items by search and category
@@ -116,7 +119,7 @@ function renderItems(items) {
   tbody.innerHTML = "";
 
   if (items.length === 0) {
-    tbody.innerHTML = `<tr id="empty-row"><td colspan="8" class="empty-msg">No items found.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="8" class="empty-msg">No items found.</td></tr>`;
     return;
   }
 
@@ -145,7 +148,7 @@ function renderItems(items) {
       <td>$${item.price.toFixed(2)}</td>
       <td>$${value}</td>
       <td>${statusBadge}</td>
-      <td>
+      <td class="no-print">
         <div class="action-btns">
           <button class="btn-edit" onclick="editItem(${item.id})">Edit</button>
           <button class="btn-delete" onclick="deleteItem(${item.id})">Delete</button>
@@ -167,4 +170,75 @@ function renderStats(items) {
   document.getElementById("total-value").textContent = `$${totalValue.toFixed(2)}`;
   document.getElementById("low-stock").textContent = lowStock;
   document.getElementById("total-categories").textContent = categories;
+}
+
+// Fetch and render stock history
+async function fetchHistory() {
+  const res = await fetch(`${API}/history`);
+  const history = await res.json();
+  renderHistory(history);
+}
+
+function renderHistory(history) {
+  const tbody = document.getElementById("history-body");
+  const count = document.getElementById("history-count");
+
+  count.textContent = `${history.length} entries`;
+
+  if (history.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="4" class="empty-msg">No history yet.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = "";
+  history.forEach((entry) => {
+    const actionClass =
+      entry.action === "Added"   ? "action-added"   :
+      entry.action === "Edited"  ? "action-edited"  :
+      "action-deleted";
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td><span class="${actionClass}">${entry.action}</span></td>
+      <td>${entry.itemName}</td>
+      <td>${entry.details}</td>
+      <td>${entry.timestamp}</td>
+    `;
+    tbody.appendChild(row);
+  });
+}
+
+// Export inventory as CSV
+function exportCSV() {
+  const headers = ["Name", "SKU", "Category", "Quantity", "Price", "Value", "Status"];
+  const rows = allItems.map((item) => {
+    const isOut = item.quantity === 0;
+    const isLow = item.quantity > 0 && item.quantity <= item.threshold;
+    const status = isOut ? "Out of Stock" : isLow ? "Low Stock" : "In Stock";
+    return [
+      `"${item.name}"`,
+      item.sku,
+      item.category,
+      item.quantity,
+      item.price.toFixed(2),
+      (item.quantity * item.price).toFixed(2),
+      status,
+    ].join(",");
+  });
+
+  const csv = [headers.join(","), ...rows].join("\n");
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `inventory-${new Date().toISOString().split("T")[0]}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// Print inventory report
+function printInventory() {
+  document.getElementById("print-date").textContent =
+    `Generated: ${new Date().toLocaleString()}`;
+  window.print();
 }

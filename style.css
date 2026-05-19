@@ -340,3 +340,93 @@ tbody td {
 .btn-delete:hover {
   background: #fee2e2;
 }
+
+/* Header action buttons */
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.btn-outline {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.4);
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* History section */
+.history-section {
+  margin-top: 2rem;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.history-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.history-count {
+  background: #e0e7ff;
+  color: #3730a3;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.6rem;
+  border-radius: 9999px;
+}
+
+.action-added   { color: #15803d; font-weight: 600; }
+.action-edited  { color: #2563eb; font-weight: 600; }
+.action-deleted { color: #dc2626; font-weight: 600; }
+
+/* Print styles */
+@media print {
+  header, .stats, .form, .toolbar, .history-section,
+  .header-actions, #toggle-form-btn, .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .print-only h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e3a5f;
+  }
+
+  .print-only p {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-top: 0.25rem;
+  }
+
+  body { background: white; }
+
+  .table-wrapper {
+    box-shadow: none;
+    border: 1px solid #e2e8f0;
+  }
+
+  thead { background-color: #1e3a5f !important; -webkit-print-color-adjust: exact; }
+}
+
+.print-only { display: none; }

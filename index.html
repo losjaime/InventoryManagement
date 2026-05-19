@@ -15,7 +15,11 @@
         <h1>Inventory Management</h1>
         <p>Track, manage, and monitor your stock</p>
       </div>
-      <button id="toggle-form-btn" onclick="toggleForm()">+ Add Item</button>
+      <div class="header-actions">
+        <button onclick="printInventory()" class="btn-outline">Print Report</button>
+        <button onclick="exportCSV()" class="btn-outline">Export CSV</button>
+        <button id="toggle-form-btn" onclick="toggleForm()">+ Add Item</button>
+      </div>
     </div>
   </header>
 
@@ -112,7 +116,7 @@
             <th>Price</th>
             <th>Value</th>
             <th>Status</th>
-            <th>Actions</th>
+            <th class="no-print">Actions</th>
           </tr>
         </thead>
         <tbody id="items-body">
@@ -123,7 +127,38 @@
       </table>
     </div>
 
+    <!-- Stock History -->
+    <div class="history-section">
+      <div class="history-header">
+        <h2>Stock History</h2>
+        <span id="history-count" class="history-count"></span>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>Item</th>
+              <th>Details</th>
+              <th>Timestamp</th>
+            </tr>
+          </thead>
+          <tbody id="history-body">
+            <tr>
+              <td colspan="4" class="empty-msg">No history yet.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </main>
+
+  <!-- Print Header (only visible when printing) -->
+  <div id="print-header" class="print-only">
+    <h1>Inventory Report</h1>
+    <p id="print-date"></p>
+  </div>
 
   <script src="app.js"></script>
 </body>

@@ -2,10 +2,22 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-const DATA_FILE = path.join(__dirname, "data.json");
+const DATA_FILE    = path.join(__dirname, "data.json");
+const HISTORY_FILE = path.join(__dirname, "history.json");
 
-if (!fs.existsSync(DATA_FILE)) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify([]));
+if (!fs.existsSync(DATA_FILE))    fs.writeFileSync(DATA_FILE, JSON.stringify([]));
+if (!fs.existsSync(HISTORY_FILE)) fs.writeFileSync(HISTORY_FILE, JSON.stringify([]));
+
+function logHistory(action, itemName, details) {
+  const history = JSON.parse(fs.readFileSync(HISTORY_FILE, "utf-8"));
+  history.unshift({
+    id: Date.now(),
+    action,
+    itemName,
+    details,
+    timestamp: new Date().toLocaleString(),
+  });
+  fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));
 }
 
 const server = http.createServer((req, res) => {
@@ -19,7 +31,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // GET /items — return all items
+  // GET /items
   if (req.method === "GET" && req.url === "/items") {
     const data = fs.readFileSync(DATA_FILE, "utf-8");
     res.writeHead(200, { "Content-Type": "application/json" });
@@ -27,7 +39,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // POST /items — add a new item
+  // POST /items
   if (req.method === "POST" && req.url === "/items") {
     let body = "";
     req.on("data", (chunk) => (body += chunk));
@@ -38,13 +50,14 @@ const server = http.createServer((req, res) => {
       newItem.createdAt = new Date().toISOString().split("T")[0];
       items.push(newItem);
       fs.writeFileSync(DATA_FILE, JSON.stringify(items, null, 2));
+      logHistory("Added", newItem.name, `SKU: ${newItem.sku} | Qty: ${newItem.quantity} | Price: $${newItem.price}`);
       res.writeHead(201, { "Content-Type": "application/json" });
       res.end(JSON.stringify(newItem));
     });
     return;
   }
 
-  // PUT /items/:id — edit an item
+  // PUT /items/:id
   if (req.method === "PUT" && req.url.startsWith("/items/")) {
     const id = Number(req.url.split("/")[2]);
     let body = "";
@@ -54,20 +67,31 @@ const server = http.createServer((req, res) => {
       const updated = JSON.parse(body);
       items = items.map((item) => (item.id === id ? { ...item, ...updated } : item));
       fs.writeFileSync(DATA_FILE, JSON.stringify(items, null, 2));
+      logHistory("Edited", updated.name, `SKU: ${updated.sku} | Qty: ${updated.quantity} | Price: $${updated.price}`);
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ success: true }));
     });
     return;
   }
 
-  // DELETE /items/:id — delete an item
+  // DELETE /items/:id
   if (req.method === "DELETE" && req.url.startsWith("/items/")) {
     const id = Number(req.url.split("/")[2]);
     let items = JSON.parse(fs.readFileSync(DATA_FILE, "utf-8"));
+    const deleted = items.find((item) => item.id === id);
     items = items.filter((item) => item.id !== id);
     fs.writeFileSync(DATA_FILE, JSON.stringify(items, null, 2));
+    if (deleted) logHistory("Deleted", deleted.name, `SKU: ${deleted.sku}`);
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ success: true }));
+    return;
+  }
+
+  // GET /history
+  if (req.method === "GET" && req.url === "/history") {
+    const data = fs.readFileSync(HISTORY_FILE, "utf-8");
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(data);
     return;
   }
 
